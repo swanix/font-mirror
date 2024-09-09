@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Swanix - Fonts Preview</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        #preview {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            /* display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            column-gap: 30px;
+            row-gap: 15px; */
+        }
+        a {
+          color: #999;
+          text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Source: <a href="https://gist.github.com/jlogix/6d44d94ba2df8586ca3f6b4d91788bb0" target="_blank">https://gist.github.com/jlogix/6d44d94ba2df8586ca3f6b4d91788bb0</a></div>
+    <div id="preview"></div>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $(function() {
+
+        $.getJSON('https://raw.githubusercontent.com/jonathantneal/google-fonts-complete/master/google-fonts.json', function(fonts) {
+        $.each(fonts, function(k, v) {
+            //if (v.category!=='sans-serif') return; //filter only sans-serif fonts. replace with your filter condition(s)
+            var css = `@import url('https://fonts.googleapis.com/css?family=${k}');`;
+            $('<style/>').append(css).appendTo(document.head);
+            $(`<h2 style="font-family: '${k}';margin-bottom:0;">/>`).text(`SWANIX`).appendTo($('#preview')).addClass( "inner" );
+            $(`<h6 style="font-family: sans-serif;margin-top:0;"/>`).text(`${k}`).appendTo($('#preview')).addClass( "inner" );
+          // Each End  
+        });
+
+    });
+    });
+    </script>    
+</body>
+</html>
